@@ -12,7 +12,6 @@ function App() {
       <Switch>
         <Route exact path="/" component={ShowCityWeather} />
         <Route exact path="/country" component={ShowCountry} />
-        <Route exact path="/offline" component={() => <h1>you are offline</h1>} />
       </Switch>
     </BrowserRouter>
   );
