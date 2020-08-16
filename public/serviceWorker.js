@@ -1,12 +1,11 @@
 const CACHE_NAME = 'weatherapp-cache';
-// const urlsToCache = ['index.html', 'offline.html', '/country'];
 const urlsToCache = [
-    'index.html',
-    'offline.html',
+    '/index.html',
+    '/offline.html',
     '/country',
-    'https://pwa-prueba.netlify.app/index.html',
-    'https://pwa-prueba.netlify.app/offline.html',
-    'https://pwa-prueba.netlify.app/country'
+    // 'https://pwa-prueba.netlify.app/index.html',
+    // 'https://pwa-prueba.netlify.app/offline.html',
+    // 'https://pwa-prueba.netlify.app/country'
 ];
 
 const self = this;
@@ -35,7 +34,7 @@ self.addEventListener('fetch', (event) => {
                 return fetch(event.request)
                     .catch( () => {
                         console.log("no la pudo traer, porque el server está offline");
-                        return caches.match('offline.html');// in case is offline
+                        return caches.match('/offline.html');// in case is offline
                     }) 
             })
     )

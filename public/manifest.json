@@ -1,7 +1,7 @@
 {
     "name": "weather app pwa",
     "short_name": "weather app",
-    "start_url": "/index.html",
+    "start_url": ".",
     "display": "standalone",
     "background_color": "#FFE9D2",
     "theme_color": "#FFE1C4",
