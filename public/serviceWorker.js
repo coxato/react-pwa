@@ -1,5 +1,10 @@
 const CACHE_NAME = 'weatherapp-cache';
-const urlsToCache = ['index.html', 'offline.html', '/country'];
+// const urlsToCache = ['index.html', 'offline.html', '/country'];
+const urlsToCache = [
+    'https://pwa-prueba.netlify.app/index.html',
+    'https://pwa-prueba.netlify.app/offline.html',
+    'https://pwa-prueba.netlify.app/country'
+];
 
 const self = this;
 
