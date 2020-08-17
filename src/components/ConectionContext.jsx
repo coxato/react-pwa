@@ -11,6 +11,7 @@ class ConnectionHOC extends Component{
     componentDidMount(){
         window.addEventListener('online', this.checkConnection);
         window.addEventListener('offline', this.checkConnection);
+        this.setState({ isOnline: window.navigator.onLine });
     }
 
     checkConnection = () => {
