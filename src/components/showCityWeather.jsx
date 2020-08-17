@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { getWeather } from '../apis/weather';
+import connectionContext from "./context";
 
 
 function WeatherData({main, sys, weather}) {
@@ -27,6 +28,7 @@ function WeatherData({main, sys, weather}) {
 function ShowWeather() {
     const [cityName, setCityName] = useState('');
     const [cityData, setCityData] = useState(null);
+    const { isOnline } = useContext(connectionContext);
 
     const getData = async ({key, target: {value}}) => {
         if(key === "Enter"){
@@ -41,14 +43,19 @@ function ShowWeather() {
 
     return(
         <div className="app-container">
-
             <div className="welcome">
                 <h2>Hello, type a city to get its weather</h2>
             </div>
 
             <div className="input-container">
-                <input type="text" onKeyUp={getData} placeholder="city name" />
+                <input disabled={!isOnline} type="text" onKeyUp={getData} placeholder="city name" />
             </div>
+
+            {
+                !isOnline && (
+                    <h3>Please connect to internet</h3>
+                )
+            }
 
             {
                 cityData && (

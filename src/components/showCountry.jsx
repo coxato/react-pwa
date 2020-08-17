@@ -1,14 +1,18 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback,useContext } from 'react';
 import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 import { getCountryInfo } from '../apis/countries';
 
 import Loader from './loader';
+import connectionContext from "./context";
+
 
 
 function ShowCountry() {
     const [countryData, setCountryData] = useState(null);
+    const { isOnline } = useContext(connectionContext);
     const { state: { countryName } } = useLocation();
+
 
     const getInfo = useCallback(
         async () => {
@@ -39,12 +43,18 @@ function ShowCountry() {
                 :
                 <>
                     <Link to="/" id="back-link">Go back</Link>
-                    <div className="country-container">
-                        <h1>{countryData.fullname}</h1>
-                        <h2>Capital: {countryData.capital}</h2>
-                        <h2>Population: {countryData.population}</h2>
-                        <img src={countryData.flag} alt="flag"/>
-                    </div>
+                    {
+                        isOnline
+                        ?
+                        <div className="country-container">
+                            <h1>{countryData.fullname}</h1>
+                            <h2>Capital: {countryData.capital}</h2>
+                            <h2>Population: {countryData.population}</h2>
+                            <img src={countryData.flag} alt="flag"/>
+                        </div>
+                        :
+                        <h3>Please connect to internet</h3>
+                    }
                 </>
             }
         </div>
